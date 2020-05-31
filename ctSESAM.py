@@ -3,14 +3,18 @@
 
 import getpass
 from hashlib import pbkdf2_hmac
+import json
+import sys
 
-small_letters = list('abcdefghijklmnopqrstuvwxyz')
-big_letters = list('ABCDEFGHIJKLMNOPQRTUVWXYZ')
-numbers = list('0123456789')
-special_characters = list('#!"§$%&/()[]{}=-_+*<>;:.')
-#password_characters = small_letters + big_letters + numbers + special_characters
-salt = "pepper"
-passwd_length = 25
+with open("config.json") as conf:
+    config = json.load(conf)
+
+small_letters = list(config['small_letters'])
+big_letters = list(config['big_letters'])
+numbers = list(config['numbers'])
+special_characters = list('special_characters')
+salt = config['salt']
+passwd_length = config['passwd_length']
 
 
 def convert_bytes_to_password(hashed_bytes, length):

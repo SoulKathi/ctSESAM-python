@@ -1,0 +1,9 @@
+{
+    "small_letters" : "abcdefghijklmnopqrstuvwxyz",
+    "big_letters" : "ABCDEFGHIJKLMNOPQRTUVWXYZ",
+    "numbers" : "0123456789",
+    "special_characters" : "#!'§$%&/()[]{}=-_+*<>;:.",
+    "salt" : "pepper",
+    "passwd_length" : 25,
+    "www.facebook.com":[]
+}
