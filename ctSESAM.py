@@ -5,11 +5,12 @@ import getpass
 from hashlib import pbkdf2_hmac
 
 small_letters = list('abcdefghijklmnopqrstuvwxyz')
-big_letters = list('ABCDEFGHJKLMNPQRTUVWXYZ')
+big_letters = list('ABCDEFGHIJKLMNOPQRTUVWXYZ')
 numbers = list('0123456789')
 special_characters = list('#!"§$%&/()[]{}=-_+*<>;:.')
-password_characters = small_letters + big_letters + numbers + special_characters
+#password_characters = small_letters + big_letters + numbers + special_characters
 salt = "pepper"
+passwd_length = 25
 
 
 def convert_bytes_to_password(hashed_bytes, length):
@@ -22,9 +23,21 @@ def convert_bytes_to_password(hashed_bytes, length):
 
 master_password = getpass.getpass(prompt='Masterpasswort: ')
 domain = input('Domain: ')
+
+# domain specific configuration
+if domain == 'www.twitter.com':
+    special_characters = list('!$%/()+-_')
+if domain == 'www.facebook.com':
+    special_characters = list('!"§$%&/()=?{[]}\+*~#,;.:-_<>|@€ ')
+    salt = 'apple'
+if domain == 'www.instagram.com':
+    passwd_length = 8
+    salt = 'Nina'
+
+password_characters = small_letters + big_letters + numbers + special_characters
 while len(domain) < 1:
-    print('Bitte gib eine Domain an, für die das Passwort generiert werden soll.')
+    print('Bitte gib die Domain an, für die das Passwort generiert werden soll.')
     domain = input('Domain: ')
 hash_string = domain + master_password
 hashed_bytes = pbkdf2_hmac('sha512', hash_string.encode('utf-8'), salt.encode('utf-8'), 4096)
-print('Passwort: ' + convert_bytes_to_password(hashed_bytes, 10))
+print('Passwort: ' + convert_bytes_to_password(hashed_bytes, passwd_length))
