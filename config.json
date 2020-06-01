@@ -5,5 +5,15 @@
     "special_characters" : "#!'§$%&/()[]{}=-_+*<>;:.",
     "salt" : "pepper",
     "passwd_length" : 25,
-    "www.facebook.com":[]
+    "www.twitter.com" : {
+        "special_characters" : "!$%/()+-_"
+    },
+    "www.facebook.com" : {
+        "special_characters" : "!'§$%&/()=?{[]}+*~#,;.:-_<>|@€ ",
+        "salt" : "apple"
+    },
+    "www.instagram.com" : {
+        "passwd_length" : 8,
+        "salt" : "Nina"
+    }
 }
